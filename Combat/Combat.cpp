@@ -116,14 +116,43 @@ void Combat::checkParticipantStatus(Character *participant) {
     }
 }
 
+void Combat::takeAction(Character* character, ActionType actionType) {
+    if (actionType == ActionType::Attack) {
+        if (character->getIsPlayer()) {
+            Action playerAction = ((Player*) character)->takeAction(enemies);
+            actionQueue.push(playerAction);
+        } else {
+            Action enemyAction = ((Enemy*) character)->takeAction(partyMembers);
+            actionQueue.push(enemyAction);
+        }
+    } else if (actionType == ActionType::Defend) {
+        character->defend();
+    }
+}
+/*
 void Combat::registerActions(vector<Character*>::iterator participantIterator) {
-    //Este while representa el turno de cada participante
-    //La eleccion que cada personaje elije en su turno
+    while (participantIterator != participants.end()) {
+        if ((*participantIterator)->getIsPlayer()) {
+            // Obtener la acción del jugador (ataque o defensa)
+            ActionType actionType = ActionType::Attack ;
+            takeAction(*participantIterator, actionType);
+        } else {
+            // Obtener la acción del enemigo (ataque o defensa)
+            ActionType actionType = ActionType::Attack ;
+            takeAction(*participantIterator, actionType);
+        }
+
+        participantIterator++;
+    }
+}
+*/
+void Combat::registerActions(vector<Character*>::iterator participantIterator) {
     while(participantIterator != participants.end()) {
         if((*participantIterator)->getIsPlayer()) {
             Action playerAction = ((Player*) *participantIterator)->takeAction(enemies);
             actionQueue.push(playerAction);
         } else {
+            ((Enemy*) *participantIterator)->defendIfNeeded();
             Action enemyAction = ((Enemy*) *participantIterator)->takeAction(partyMembers);
             actionQueue.push(enemyAction);
         }

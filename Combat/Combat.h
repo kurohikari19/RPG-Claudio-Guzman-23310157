@@ -10,6 +10,11 @@
 #include "../Enemy/Enemy.h"
 #include <queue>
 
+enum class ActionType {
+    Attack,
+    Defend
+};
+
 class Combat {
 private:
     vector<Character*> participants;
@@ -22,6 +27,8 @@ private:
 
     void combatPrep();
     Character* getTarget(Character* attacker);
+    void takeAction(Character* character, ActionType actionType);
+
 public:
     Combat(vector<Character*> _participants);
     Combat(vector<Player*> _partyMembers, vector<Enemy*> _enemies);

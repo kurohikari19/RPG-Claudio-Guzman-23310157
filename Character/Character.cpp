@@ -47,3 +47,9 @@ bool Character::flee(Character*target) {
     int chance = rand() % 100;
     return chance > 30;
 }
+
+void Character::defend() {
+    int originalDefense = defense;
+    defense = defense * 1.2;
+    defense = originalDefense;
+}

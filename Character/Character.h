@@ -16,6 +16,7 @@ protected:
     int defense;
     int speed;
     bool isPlayer;
+    int maxHealth;
 public:
     Character(string _name, int _health, int _attack, int _defense, int _speed, bool _isPlayer);
 
@@ -34,6 +35,10 @@ public:
     bool getIsPlayer();
     int getSpeed();
     string toString();
+
+    int getMaxHealth() const {
+        return maxHealth;
+    }
 };
 
 

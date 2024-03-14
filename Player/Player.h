@@ -28,6 +28,8 @@ public:
 
     void gainExperience(int exp);
 
+    void doDefend();
+
     //TODO: Implement use object
 };
 

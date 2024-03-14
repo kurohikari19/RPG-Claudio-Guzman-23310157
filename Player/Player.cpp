@@ -16,6 +16,10 @@ void Player::doAttack(Character *target) {
     target->takeDamage(attack);
 }
 
+void Player::doDefend() {
+    defend();
+}
+
 void Player::takeDamage(int damage) {
     int trueDamage = damage - defense;
 
@@ -55,7 +59,7 @@ Character* Player::selectTarget(vector<Enemy*> possibleTargets) {
 Action Player::takeAction(vector<Enemy*> enemies) {
     int action = 0;
     cout << "Select an action: " << endl
-    << "1. Attack" << endl;
+    << "1. Attack" << endl << "2. Defense" << endl;
 
     //TODO: Validate input
     cin >> action;
@@ -68,6 +72,14 @@ Action Player::takeAction(vector<Enemy*> enemies) {
             currentAction.target = target;
             currentAction.action = [this, target](){
                 doAttack(target);
+            };
+            currentAction.speed = getSpeed();
+            break;
+        case 2:
+            target = this;
+            currentAction.target = target;
+            currentAction.action = [this]() {
+                defend();
             };
             currentAction.speed = getSpeed();
             break;

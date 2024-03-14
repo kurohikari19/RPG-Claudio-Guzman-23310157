@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "../Utils.h"
 #include <iostream>
+#include "../Character/Character.h"
 
 
 using namespace std;
@@ -56,4 +57,17 @@ Action Enemy::takeAction(vector<Player*> partyMembers) {
     };
 
     return currentAction;
+}
+
+void Enemy::defendIfNeeded() {
+    // Verificar si la vida del enemigo está al 15%
+    if ((double)health / this->getMaxHealth() <= 0.15) {
+        // Generar un número aleatorio entre 0 y 99 para representar un porcentaje
+        int randomChance = rand() % 100;
+        // Verificar si el número aleatorio está dentro del 40%
+        if (randomChance < 40) {
+            // Realizar la acción de defensa
+            defend();
+        }
+    }
 }
