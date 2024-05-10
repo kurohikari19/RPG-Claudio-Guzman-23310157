@@ -127,16 +127,19 @@ Action Player::takeAction(vector<Enemy*> enemies, vector<Player*>& partyMembers,
     Character* target = nullptr;
 
     do {
+        cout << "--------------------------------" << endl;
         cout << "Select an action: " << endl
              << "1. Attack" << endl << "2. Defense" << endl
              << "3. Check Exp" << endl << "4. Check Level" << endl
-             << "5. Check stats" << endl << "6. Check enemy stats" << endl;
+             << "5. Check stats" << endl << "6. Check enemy stats" << endl
+             << "7. Save Game" << endl << "8. Load Game" << endl;
 
         // Leer la entrada del usuario
         cin >> action;
 
         // Validar la entrada del usuario
-        if (action < 1 || action > 6) {
+        if (action < 1 || action > 8) {
+            cout << "--------------------------------" << endl;
             cout << "Invalid action. Please try again." << endl;
             continue; // Volver a solicitar la entrada del usuario
         }
@@ -172,7 +175,6 @@ Action Player::takeAction(vector<Enemy*> enemies, vector<Player*>& partyMembers,
                 for (Enemy* enemy : enemies) {
                     enemy->increaseStats();
                 }
-                cout << "--------------------------------" << endl;
                 break;
             case 4:
                 cout << "--------------------------------" << endl;
@@ -187,25 +189,39 @@ Action Player::takeAction(vector<Enemy*> enemies, vector<Player*>& partyMembers,
                 cout << "Attack: " << getAttack() << endl;
                 cout << "Defense: " << getDefense() << endl;
                 cout << "Speed: " << getSpeed() << endl;
-                cout << "--------------------------------" << endl;
                 break;
             case 6:
                 cout << "--------------------------------" << endl;
                 cout << "Checking enemy stats..." << endl;
                 for (Enemy* enemy : enemies) {
+                    cout << "--------------------------------" << endl;
                     cout << "Name: " << enemy->getName() << endl;
                     cout << "Health: " << enemy->getHealth() << endl;
                     cout << "Attack: " << enemy->getAttack() << endl;
                     cout << "Defense: " << enemy->getDefense() << endl;
                     cout << "Speed: " << enemy->getSpeed() << endl;
-                    cout << "--------------------------------" << endl;
+                }
+                break;
+            case 7:
+                cout << "--------------------------------" << endl;
+                saveToFile("player_stats.txt");
+                cout << "Player stats saved successfully." << endl;
+                break;
+            case 8:
+                cout << "--------------------------------" << endl;
+                if (!loadFromFile("player_stats.txt")) {
+                    cout << "Failed to load player stats. Starting a new game." << endl;
+                    // Inicializar el jugador con estadísticas predeterminadas
+                } else {
+                    cout << "Player stats loaded successfully." << endl;
                 }
                 break;
             default:
                 cout << "Invalid action" << endl;
                 break;
         }
-    } while (action == 3 || action == 4 || action == 5 || action == 6); // Repetir mientras la acción sea 3, 4, 5 o 6
+    } while (action == 3 || action == 4 || action == 5 || action == 6
+    || action == 7 || action == 8); // Repetir mientras la acción sea 3, 4, 5, 6, 7 o 8
 
     return currentAction;
 }

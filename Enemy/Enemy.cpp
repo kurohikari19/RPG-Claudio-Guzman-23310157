@@ -28,6 +28,7 @@ void Enemy::takeDamage(int damage) {
         cout << name << " has been defeated!" << endl;
         int experienceGained = getExperience();
         cout << "You gained " << experienceGained << " experience!" << endl;
+        cout << "--------------------------------" << endl;
         cout << "If you gained more than 100 point of experience, "
                 "please check your stats (option 3) for increase them." << endl
                 << "Your enemy also increasing it stats along with you" << endl;

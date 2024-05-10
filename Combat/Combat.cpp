@@ -87,6 +87,7 @@ void Combat::doCombat() {
     int round = 1;
     while (true) {
         // Imprimir mensaje de ronda
+        cout << "--------------------------------" << endl;
         cout << "Round " << round << endl;
 
         // Realizar acciones y continuar con la siguiente ronda

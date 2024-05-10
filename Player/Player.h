@@ -8,6 +8,8 @@
 #include "../Enemy/Enemy.h"
 #include "../Combat/Action.h"
 #include <vector>
+#include <fstream>
+#include <sstream>
 
 class Enemy;
 
@@ -40,7 +42,37 @@ public:
     void checkEnemyStats(const vector<Enemy*>& enemies);
     std::vector<Enemy*> enemies;
 
-};
+    void saveToFile(const std::string& filename) const {
+        std::ofstream file(filename);
+        if (file.is_open()) {
+            file << name << std::endl;
+            file << health << std::endl;
+            file << attack << std::endl;
+            file << defense << std::endl;
+            file << speed << std::endl;
+            file << level << std::endl;
+            file << experience << std::endl;
+            file.close();
+        }
+    }
 
+    bool loadFromFile(const std::string& filename) {
+        std::ifstream file(filename);
+        if (file.is_open()) {
+            std::string line;
+            if (std::getline(file, line)) name = line;
+            if (std::getline(file, line)) health = std::stoi(line);
+            if (std::getline(file, line)) attack = std::stoi(line);
+            if (std::getline(file, line)) defense = std::stoi(line);
+            if (std::getline(file, line)) speed = std::stoi(line);
+            if (std::getline(file, line)) level = std::stoi(line);
+            if (std::getline(file, line)) experience = std::stoi(line);
+            file.close();
+            return true; // Devolver true si la carga del archivo fue exitosa
+        }
+        return false; // Devolver false si la carga del archivo falló
+    }
+
+};
 
 #endif //RPG_PLAYER_H

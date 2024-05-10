@@ -20,6 +20,6 @@ CMake Deprecation Warning:
 -- Check for working CXX compiler: C:/msys64/mingw64/bin/c++.exe - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Configuring done (8.2s)
--- Generating done (0.1s)
+-- Configuring done (10.2s)
+-- Generating done (0.2s)
 -- Build files have been written to: C:/Users/kuroh/OneDrive/Documentos/GitHub/RPG/cmake-build-debug
