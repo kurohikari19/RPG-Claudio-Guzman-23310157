@@ -89,6 +89,20 @@ void Player::levelUp() {
 
         points--;
     }
+    // Incrementar las estadísticas de los enemigos
+    for (Enemy* enemy : enemies) {
+        enemy->increaseStats();
+    }
+}
+
+
+
+void Enemy::increaseStats() {
+    // Incrementar las estadísticas de los enemigos
+    health += 2;
+    attack += 1;
+    defense += 1;
+    speed += 1;
 }
 
 void Player::checkExperience() {
@@ -116,19 +130,20 @@ Action Player::takeAction(vector<Enemy*> enemies, vector<Player*>& partyMembers,
         cout << "Select an action: " << endl
              << "1. Attack" << endl << "2. Defense" << endl
              << "3. Check Exp" << endl << "4. Check Level" << endl
-             << "5. Check stats" << endl;
+             << "5. Check stats" << endl << "6. Check enemy stats" << endl;
 
         // Leer la entrada del usuario
         cin >> action;
 
         // Validar la entrada del usuario
-        if (action < 1 || action > 5) {
+        if (action < 1 || action > 6) {
             cout << "Invalid action. Please try again." << endl;
             continue; // Volver a solicitar la entrada del usuario
         }
 
         switch(action) {
             case 1:
+                cout << "--------------------------------" << endl;
                 target = selectTarget(enemies);
                 currentAction.target = target;
                 currentAction.action = [this, target](){
@@ -137,6 +152,7 @@ Action Player::takeAction(vector<Enemy*> enemies, vector<Player*>& partyMembers,
                 currentAction.speed = getSpeed();
                 break;
             case 2:
+                cout << "--------------------------------" << endl;
                 target = this;
                 currentAction.target = target;
                 currentAction.action = [this]() {
@@ -145,6 +161,7 @@ Action Player::takeAction(vector<Enemy*> enemies, vector<Player*>& partyMembers,
                 currentAction.speed = getSpeed();
                 break;
             case 3:
+                cout << "--------------------------------" << endl;
                 cout << "Checking experience..." << endl;
                 for (Player* player : partyMembers) {
                     int previousExp = player->getExperience();
@@ -152,24 +169,43 @@ Action Player::takeAction(vector<Enemy*> enemies, vector<Player*>& partyMembers,
                     int newExp = player->getExperience();
                     cout << "Player " << player->getName() << " gained " << (newExp - previousExp) << " experience." << endl;
                 }
+                for (Enemy* enemy : enemies) {
+                    enemy->increaseStats();
+                }
+                cout << "--------------------------------" << endl;
                 break;
             case 4:
+                cout << "--------------------------------" << endl;
                 cout << "Checking level..." << endl;
                 cout << "Player " << getName() << " is level " << level << endl;
                 break;
             case 5:
+                cout << "--------------------------------" << endl;
                 cout << "Checking stats..." << endl;
                 cout << "Name: " << getName() << endl;
                 cout << "Health: " << getHealth() << endl;
                 cout << "Attack: " << getAttack() << endl;
                 cout << "Defense: " << getDefense() << endl;
                 cout << "Speed: " << getSpeed() << endl;
+                cout << "--------------------------------" << endl;
+                break;
+            case 6:
+                cout << "--------------------------------" << endl;
+                cout << "Checking enemy stats..." << endl;
+                for (Enemy* enemy : enemies) {
+                    cout << "Name: " << enemy->getName() << endl;
+                    cout << "Health: " << enemy->getHealth() << endl;
+                    cout << "Attack: " << enemy->getAttack() << endl;
+                    cout << "Defense: " << enemy->getDefense() << endl;
+                    cout << "Speed: " << enemy->getSpeed() << endl;
+                    cout << "--------------------------------" << endl;
+                }
                 break;
             default:
                 cout << "Invalid action" << endl;
                 break;
         }
-    } while (action == 3 || action == 4 || action == 5); // Repetir mientras la acción sea 3, 4 o 5
+    } while (action == 3 || action == 4 || action == 5 || action == 6); // Repetir mientras la acción sea 3, 4, 5 o 6
 
     return currentAction;
 }

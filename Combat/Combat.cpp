@@ -113,13 +113,6 @@ void Combat::doCombat() {
     }
 
     if (enemies.empty()) {
-        /*for (Player* player : partyMembers) {
-            int previousExp = player->getExperience();
-            player->gainExperience(totalEnemyExperience); // Ganancia de experiencia por derrotar a los enemigos
-            int newExp = player->getExperience();
-            cout << "Player " << player->getName() << " gained " << (newExp - previousExp) << " experience." << endl;
-            player->checkLevelUp(); // Verificar si el jugador subió de nivel
-        }*/
         cout << "You win!" << endl;
     } else {
         cout << "You lose!" << endl;

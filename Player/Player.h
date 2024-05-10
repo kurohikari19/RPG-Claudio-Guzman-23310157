@@ -18,7 +18,6 @@ private:
     int level;
     int experience;
 
-    //void levelUp();
 public:
     Player(string _name, int _health, int _attack, int _defense, int _speed);
     void doAttack(Character *target) override;
@@ -36,7 +35,10 @@ public:
 
     void levelUp(); // Actualizar para mostrar el menú y asignar puntos a las estadísticas
 
-    void printStats() const;
+    void levelUp(vector<Enemy*>& enemies); // Sobrecarga de la función levelUp() para aumentar estadísticas de los enemigos
+
+    void checkEnemyStats(const vector<Enemy*>& enemies);
+    std::vector<Enemy*> enemies;
 
 };
 

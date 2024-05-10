@@ -24,6 +24,7 @@ public:
     Action takeAction(vector<Player*> partyMembers);
     void defendIfNeeded();
     int getExperience() const;
+    void increaseStats(); // Declaración de la función increaseStats() para aumentar las estadísticas del enemigo
 };
 
 #endif // RPG_ENEMY_H
