@@ -124,10 +124,8 @@ CMakeFiles/rpg.dir/Enemy/Enemy.cpp.obj: \
  C:/msys64/mingw64/include/c++/13.2.0/bits/uniform_int_dist.h \
  C:/msys64/mingw64/include/c++/13.2.0/bits/stl_tempbuf.h \
  C:/Users/kuroh/OneDrive/Documentos/GitHub/RPG/Character/Character.h \
- C:/Users/kuroh/OneDrive/Documentos/GitHub/RPG/Combat/Action.h \
- C:/Users/kuroh/OneDrive/Documentos/GitHub/RPG/Utils.h \
- C:/msys64/mingw64/include/c++/13.2.0/iostream \
- C:/msys64/mingw64/include/c++/13.2.0/ostream \
+ C:/msys64/mingw64/include/c++/13.2.0/fstream \
+ C:/msys64/mingw64/include/c++/13.2.0/istream \
  C:/msys64/mingw64/include/c++/13.2.0/ios \
  C:/msys64/mingw64/include/c++/13.2.0/exception \
  C:/msys64/mingw64/include/c++/13.2.0/bits/exception_ptr.h \
@@ -166,9 +164,18 @@ CMakeFiles/rpg.dir/Enemy/Enemy.cpp.obj: \
  C:/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/ctype_inline.h \
  C:/msys64/mingw64/include/c++/13.2.0/bits/locale_facets.tcc \
  C:/msys64/mingw64/include/c++/13.2.0/bits/basic_ios.tcc \
+ C:/msys64/mingw64/include/c++/13.2.0/ostream \
  C:/msys64/mingw64/include/c++/13.2.0/bits/ostream.tcc \
- C:/msys64/mingw64/include/c++/13.2.0/istream \
  C:/msys64/mingw64/include/c++/13.2.0/bits/istream.tcc \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/codecvt.h \
+ C:/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/basic_file.h \
+ C:/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/c++io.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/fstream.tcc \
+ C:/msys64/mingw64/include/c++/13.2.0/sstream \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/sstream.tcc \
+ C:/Users/kuroh/OneDrive/Documentos/GitHub/RPG/Combat/Action.h \
+ C:/Users/kuroh/OneDrive/Documentos/GitHub/RPG/Utils.h \
+ C:/msys64/mingw64/include/c++/13.2.0/iostream \
  C:/Users/kuroh/OneDrive/Documentos/GitHub/RPG/Combat/Combat.h \
  C:/msys64/mingw64/include/c++/13.2.0/queue \
  C:/msys64/mingw64/include/c++/13.2.0/deque \

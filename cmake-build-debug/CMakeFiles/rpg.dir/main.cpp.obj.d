@@ -165,6 +165,13 @@ CMakeFiles/rpg.dir/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/13.2.0/bits/stl_tempbuf.h \
  C:/Users/kuroh/OneDrive/Documentos/GitHub/RPG/Character/Character.h \
  C:/Users/kuroh/OneDrive/Documentos/GitHub/RPG/Combat/Action.h \
+ C:/msys64/mingw64/include/c++/13.2.0/fstream \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/codecvt.h \
+ C:/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/basic_file.h \
+ C:/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/c++io.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/fstream.tcc \
+ C:/msys64/mingw64/include/c++/13.2.0/sstream \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/sstream.tcc \
  C:\Users\kuroh\OneDrive\Documentos\GitHub\RPG\Combat/Combat.h \
  C:/Users/kuroh/OneDrive/Documentos/GitHub/RPG/Character/Character.h \
  C:/msys64/mingw64/include/c++/13.2.0/queue \
