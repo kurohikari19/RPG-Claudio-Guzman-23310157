@@ -18,19 +18,26 @@ private:
     int level;
     int experience;
 
-    void levelUp();
+    //void levelUp();
 public:
     Player(string _name, int _health, int _attack, int _defense, int _speed);
     void doAttack(Character *target) override;
     void takeDamage(int damage) override;
     Character* selectTarget(vector<Enemy*> possibleTargets);
-    Action takeAction(vector<Enemy*> enemies);
-
-    void gainExperience(int exp);
+    Action takeAction(vector<Enemy*> enemies, vector<Player*>& partyMembers, int totalEnemyExperience);
 
     void doDefend();
 
-    //TODO: Implement use object
+    void gainExperience(int exp); // Método para sumar la experiencia ganada
+    int getExperience() const; // Método para obtener la experiencia total del jugador
+    void checkExperience();
+
+    void checkLevelUp(); // Método para verificar si el jugador debe subir de nivel
+
+    void levelUp(); // Actualizar para mostrar el menú y asignar puntos a las estadísticas
+
+    void printStats() const;
+
 };
 
 

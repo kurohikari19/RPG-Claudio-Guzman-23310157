@@ -36,6 +36,10 @@ public:
     void doCombat();
     void addParticipant(Character *participant);
     string toString();
+
+    static int totalEnemyExperience; // Declaración de la variable
+    static void addEnemyExperience(int experience);
+    static int getTotalEnemyExperience();
 };
 
 

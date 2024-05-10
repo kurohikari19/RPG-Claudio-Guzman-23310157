@@ -23,8 +23,7 @@ public:
     Character* selectTarget(vector<Player*> possibleTargets);
     Action takeAction(vector<Player*> partyMembers);
     void defendIfNeeded();
-    int getExperience();
+    int getExperience() const;
 };
 
-
-#endif //RPG_ENEMY_H
+#endif // RPG_ENEMY_H

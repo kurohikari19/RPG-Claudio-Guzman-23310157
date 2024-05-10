@@ -9,6 +9,16 @@
 
 using namespace std;
 
+int Combat::totalEnemyExperience = 0; // Inicialización de la variable
+
+void Combat::addEnemyExperience(int experience) {
+    totalEnemyExperience += experience;
+}
+
+int Combat::getTotalEnemyExperience() {
+    return totalEnemyExperience;
+}
+
 bool compareSpeed(Character *a, Character *b) {
     return a->getSpeed() > b->getSpeed();
 }
@@ -72,26 +82,51 @@ Character* Combat::getTarget(Character* attacker) {
 }
 
 void Combat::doCombat() {
-    cout<< "Inicio del combate" << endl;
+    cout << "Inicio del combate" << endl;
     combatPrep();
     int round = 1;
-    //Este while representa las rondas del combate
-    while(enemies.size() > 0 && partyMembers.size() > 0) {
-        cout<<"Round " << round << endl;
+    while (true) {
+        // Imprimir mensaje de ronda
+        cout << "Round " << round << endl;
+
+        // Realizar acciones y continuar con la siguiente ronda
         vector<Character*>::iterator it = participants.begin();
         registerActions(it);
         executeActions(it);
 
+        // Chequear si algún jugador ha sido derrotado
+        partyMembers.erase(remove_if(partyMembers.begin(), partyMembers.end(), [&](Player* player) {
+            if (player->getHealth() <= 0) {
+                cout << "Player " << player->getName() << " has been defeated!" << endl;
+                delete player;
+                return true;
+            }
+            return false;
+        }), partyMembers.end());
+
+        // Verificar si el combate ha terminado
+        if (enemies.empty() || partyMembers.empty()) {
+            break;
+        }
+
         round++;
     }
 
-    if(enemies.empty()) {
+    if (enemies.empty()) {
+        /*for (Player* player : partyMembers) {
+            int previousExp = player->getExperience();
+            player->gainExperience(totalEnemyExperience); // Ganancia de experiencia por derrotar a los enemigos
+            int newExp = player->getExperience();
+            cout << "Player " << player->getName() << " gained " << (newExp - previousExp) << " experience." << endl;
+            player->checkLevelUp(); // Verificar si el jugador subió de nivel
+        }*/
         cout << "You win!" << endl;
     } else {
         cout << "You lose!" << endl;
-
     }
 }
+
+
 
 void Combat::executeActions(vector<Character*>::iterator participant) {
     while(!actionQueue.empty()) {
@@ -119,7 +154,7 @@ void Combat::checkParticipantStatus(Character *participant) {
 void Combat::takeAction(Character* character, ActionType actionType) {
     if (actionType == ActionType::Attack) {
         if (character->getIsPlayer()) {
-            Action playerAction = ((Player*) character)->takeAction(enemies);
+            Action playerAction = ((Player*) character)->takeAction(enemies, partyMembers, totalEnemyExperience);
             actionQueue.push(playerAction);
         } else {
             Action enemyAction = ((Enemy*) character)->takeAction(partyMembers);
@@ -129,27 +164,11 @@ void Combat::takeAction(Character* character, ActionType actionType) {
         character->defend();
     }
 }
-/*
-void Combat::registerActions(vector<Character*>::iterator participantIterator) {
-    while (participantIterator != participants.end()) {
-        if ((*participantIterator)->getIsPlayer()) {
-            // Obtener la acción del jugador (ataque o defensa)
-            ActionType actionType = ActionType::Attack ;
-            takeAction(*participantIterator, actionType);
-        } else {
-            // Obtener la acción del enemigo (ataque o defensa)
-            ActionType actionType = ActionType::Attack ;
-            takeAction(*participantIterator, actionType);
-        }
 
-        participantIterator++;
-    }
-}
-*/
 void Combat::registerActions(vector<Character*>::iterator participantIterator) {
     while(participantIterator != participants.end()) {
         if((*participantIterator)->getIsPlayer()) {
-            Action playerAction = ((Player*) *participantIterator)->takeAction(enemies);
+            Action playerAction = ((Player*) *participantIterator)->takeAction(enemies, partyMembers, totalEnemyExperience);
             actionQueue.push(playerAction);
         } else {
             ((Enemy*) *participantIterator)->defendIfNeeded();

@@ -6,9 +6,9 @@
 #include "../Utils.h"
 #include <iostream>
 #include "../Character/Character.h"
+#include "../Combat/Combat.h"
 
 
-using namespace std;
 using namespace combat_utils;
 
 Enemy::Enemy(string _name, int _health, int _attack, int _defense, int _speed, int _experience) : Character(_name, _health, _attack, _defense, _speed, false) {
@@ -26,11 +26,12 @@ void Enemy::takeDamage(int damage) {
     cout << name << " took " << trueDamage << " damage!" << endl;
     if(health <= 0) {
         cout << name << " has been defeated!" << endl;
+        int experienceGained = getExperience();
+        cout << "You gained " << experienceGained << " experience!" << endl;
+        cout << "If you gained more than 100 point of experience, "
+                "please check your stats (option 3) for increase them" << endl;
+        Combat::addEnemyExperience(experienceGained);
     }
-}
-
-int Enemy::getExperience() {
-    return experience;
 }
 
 Character* Enemy::selectTarget(vector<Player*> possibleTargets) {
@@ -70,4 +71,8 @@ void Enemy::defendIfNeeded() {
             defend();
         }
     }
+}
+
+int Enemy::getExperience() const {
+    return experience;
 }
